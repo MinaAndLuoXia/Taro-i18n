@@ -14,7 +14,7 @@ export default class T {
     this.locale = locale
   }
 
-  _(line: string,value:{}): any {
+  _(line: string,value?:{}): any {
     const { locale } = this
     let string = line
 
