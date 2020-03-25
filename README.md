@@ -4,11 +4,13 @@ Taro国际化结构，支持参数化,支持小程序
 ## 快速开始
 ### 1.安装插件,在项目的根目录下打开命令行,执行 
 ```npm i --save taro-i18n```
-### 2.创建 **locales.ts文件** 
+### 2.创建 **locales.ts文件** ,例子中是放在utils文件夹下的,实际上你可以将该文件放在你项目的任意位置
 ```
 //locales.ts文件内容
 export default function get(value: any={}): any{
   return {
+
+    //en 和 zh是语言类型,可以新增语言或重命名
     'en': {
       'test': `this is test text`,
       'testParam': `Resend in ${value.time} s`,
@@ -28,7 +30,7 @@ export default function get(value: any={}): any{
 //文件最上方引入组件
 import i18n from 'taro-i18n'
 
-//步骤2中你建的 locales.ts文件 位置,我是放在utils文件夹下,具体以你实际位置为准
+//导入步骤2中你建的 locales.ts文件,我是放在utils文件夹下,具体以你实际位置为准
 import locales from './utils/locales'
 
 
@@ -44,8 +46,10 @@ import locales from './utils/locales'
     i18n.t = new i18n('zh',locales)
   }
   ```
-  ### 4. 简单使用,在页面或组件中引用 `import i18n from 'taro-i18n'` 在需要的地方 `i18n.t._('test')`,显示效果 '这是测试文本'
+  ### 4. 简单使用
+  在页面或组件中引用 `import i18n from 'taro-i18n'` 在需要的地方 `i18n.t._('test')`,显示效果 '这是测试文本'
  ### 5. 带参数使用
+ 同样需要在页面或组件中引用 `import i18n from 'taro-i18n'`
  ```
  //locales.ts 中
  'testParam': `${value.time}秒后重发`,
@@ -64,8 +68,14 @@ import locales from './utils/locales'
  ```
   使用`i18n.t._('testMultiParam',{'name':'小明','school':'明珠小学'})` 显示效果 '小明去上明珠小学'
 
-  ### 6.以上步骤即可正常使用国际化组件
-## 通过源码使用(适合修改和优化)
+  ### 6.手动修改语言类型
+  ```
+  i18n.t.setLocale('en')
+  ```
+  ### 7.以上步骤即可正常使用国际化组件
+
+  ***
+## 通过源码使用(适合修改和优化开发)
 ### 1. 复制demo中 **utils** 文件夹下的 **i18n.ts** 和 **locales.ts** 文件,粘贴到你自己的utils文件夹或其他任意文件夹
 ### 2. 在**app文件**(**app.tsx**或**app.js**,根据你的项目使用的是ts还是js决定,以下是ts的例子)中引入 **i18n.ts** 文件,并初始化国际化工具
   ```
