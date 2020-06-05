@@ -2,19 +2,19 @@ import locales from './locales'
 
 export default class T {
 
-  locale: string
-  static t: T=new T('en')
-  constructor(locale: string) {
+  locale
+  static t = {_:()=>{}}
+  constructor(locale) {
     if (locale) {
       this.locale = locale
     }
   }
 
-  setLocale(locale: string): void {
+  setLocale(locale) {
     this.locale = locale
   }
 
-  _(line: string,value?:{}): any {
+  _(line,value) {
     const { locale } = this
     let string = line
 
